@@ -18,7 +18,7 @@ def test_process_headers():
     """It should add a Spb- prefix to header names"""
     output = process_headers({"Accept-Language": "En-US"})
     assert output == {
-        "User-Agent": "ScrapingBee-Python/2.0.1",
+        "User-Agent": "ScrapingBee-Python/2.0.2",
         "Spb-Accept-Language": "En-US",
     }
 
@@ -44,6 +44,13 @@ def test_process_js_scenario():
     """It should format js_scenario to a stringified JSON"""
     output = process_json_stringify_param({"instructions": [{"click": "#buttonId"}]}, "js_scenario")
     assert output == '{"instructions": [{"click": "#buttonId"}]}'
+
+
+def test_process_ai_extract_rules():
+    """It should format ai_extract_rules to a stringified JSON"""
+    output = process_json_stringify_param(
+        {"product_name": "The name of the product", "price": "The price in USD"}, "ai_extract_rules")
+    assert output == '{"product_name": "The name of the product", "price": "The price in USD"}'
 
 
 def test_process_params():
